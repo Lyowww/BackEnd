@@ -1,0 +1,1 @@
+{"version":3,"file":"email-confirm.module.js","sourceRoot":"","sources":["../../src/email-confirm/email-confirm.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,yEAAoE;AACpE,mEAA8D;AAQvD,IAAM,kBAAkB,GAAxB,MAAM,kBAAkB;CAAG,CAAA;AAArB,gDAAkB;6BAAlB,kBAAkB;IAN9B,IAAA,eAAM,EAAC;QACJ,SAAS,EAAE,CAAC,2CAAmB,CAAC;QAChC,WAAW,EAAE;YACT,iDAAsB;SACzB;KACJ,CAAC;GACW,kBAAkB,CAAG"}
