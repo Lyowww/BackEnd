@@ -4,9 +4,12 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { MailModule } from "./mail/mail.module";
+import { SubscriberModule } from "./subscriber/subscriber.module";
 import { JobCategoriesModule } from "./job-category/job-category.module";
 
 const NODE_ENV = process.env.NODE_ENV;
+require('dotenv').config()
+const dotenv=require('dotenv');
 
 @Module({
     imports: [
@@ -26,6 +29,7 @@ const NODE_ENV = process.env.NODE_ENV;
         AuthModule,
         UserModule,
         JobCategoriesModule,
+        SubscriberModule,
     ],
 })
 export class AppModule {}

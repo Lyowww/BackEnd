@@ -9,7 +9,7 @@
         "build": "nest build",
         "postbuild": "cp -r src/mail/templates dist/mail/templates",
         "start": "nest start",
-        "start:dev": "NODE_ENV=development nest start --watch",
+        "start:dev": "SET NODE_ENV=development & nest start --watch",
         "start:dev2": "cross-env NODE_ENV=development nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "NODE_ENV=production node dist/main"
@@ -28,6 +28,7 @@
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.1",
         "cross-env": "^7.0.3",
+        "dotenv": "^16.4.5",
         "mongoose": "^8.8.1",
         "mongoose-paginate-v2": "^1.8.5",
         "passport-google-oauth20": "^2.0.0",
