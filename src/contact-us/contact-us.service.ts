@@ -37,7 +37,7 @@ export class ContactUsService {
     }
 
     findOne(id: Types.ObjectId) {
-        const contactRequest = this.contactUsModel.findById(id);
+        const contactRequest = this.contactUsModel.findById(new Types.ObjectId(id));
 
         if (!contactRequest) throw new NotFoundException(`Contact request not found`);
 
@@ -49,7 +49,7 @@ export class ContactUsService {
     }
 
     update(id: Types.ObjectId, body: ContactUsDto) {
-        const updatedContactUs = this.contactUsModel.findByIdAndUpdate(id, { ...body }, { new: true });
+        const updatedContactUs = this.contactUsModel.findByIdAndUpdate(new Types.ObjectId(id), { ...body }, { new: true });
 
         if (!updatedContactUs) throw new NotFoundException(`Contact request not found`);
 

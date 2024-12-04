@@ -87,9 +87,9 @@ export class JobsService {
     }
 
     async getOne(id: Types.ObjectId) {
-        if (!Types.ObjectId.isValid(id)) throw new BadRequestException(`Incorrect query`);
+        if (!Types.ObjectId.isValid(new Types.ObjectId(id))) throw new BadRequestException(`Incorrect query`);
 
-        const job = await this.jobModel.findById(id);
+        const job = await this.jobModel.findById(new Types.ObjectId(id));
         if (!job) throw new NotFoundException(`Job not found`);
 
         return job;
@@ -101,16 +101,16 @@ export class JobsService {
     }
 
     async update(id: Types.ObjectId, job: JobSDto) {
-        if (!Types.ObjectId.isValid(id)) throw new BadRequestException(`Incorrect query`);
+        if (!Types.ObjectId.isValid(new Types.ObjectId(id))) throw new BadRequestException(`Incorrect query`);
 
-        const updateJob = await this.jobModel.findByIdAndUpdate(id, { ...job }, { new: true });
+        const updateJob = await this.jobModel.findByIdAndUpdate(new Types.ObjectId(id), { ...job }, { new: true });
         if (!updateJob) throw new NotFoundException(`Job category not found`);
 
         return updateJob;
     }
 
     async delete(id: Types.ObjectId) {
-        if (!Types.ObjectId.isValid(id)) throw new BadRequestException(`Incorrect query`);
+        if (!Types.ObjectId.isValid(new Types.ObjectId(id))) throw new BadRequestException(`Incorrect query`);
 
         const job = await this.jobModel.findByIdAndDelete({ _id: id });
         if (!job) throw new NotFoundException(`Job category not found`);
