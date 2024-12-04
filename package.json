@@ -1,52 +1,38 @@
 {
-  "name": "be-bridge",
-  "version": "0.0.1",
-  "description": "",
-  "author": "BeBridge LTD",
+  "name": "be-bridge-cms",
+  "version": "0.1.0",
   "private": true,
-  "license": "UNLICENSED",
+  "description": "A Strapi application",
   "scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "cross-env NODE_ENV=development nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "cross-env NODE_ENV=production node dist/main"
+    "build": "strapi build",
+    "deploy": "strapi deploy",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
   },
   "dependencies": {
-    "@nestjs-modules/mailer": "^2.0.2",
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/config": "^3.3.0",
-    "@nestjs/core": "^10.0.0",
-    "@nestjs/jwt": "^10.2.0",
-    "@nestjs/mapped-types": "*",
-    "@nestjs/mongoose": "^10.1.0",
-    "@nestjs/passport": "^10.0.3",
-    "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/serve-static": "^4.0.2",
-    "bcrypt": "^5.1.1",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.1",
-    "cross-env": "^7.0.3",
-    "mongoose": "^8.8.1",
-    "mongoose-paginate-ts": "^1.3.1",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-linkedin-oauth2": "^2.0.0",
-    "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "@strapi/plugin-cloud": "5.4.2",
+    "@strapi/plugin-documentation": "^5.4.2",
+    "@strapi/plugin-users-permissions": "5.4.2",
+    "@strapi/provider-email-nodemailer": "^5.4.2",
+    "@strapi/strapi": "5.4.2",
+    "pg": "8.8.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.0.0",
-    "@nestjs/schematics": "^10.0.0",
-    "@types/bcrypt": "^5.0.2",
-    "@types/express": "^4.17.17",
-    "@types/multer": "^1.4.12",
-    "@types/node": "^20.3.1",
-    "@types/passport-google-oauth20": "^2.0.16",
-    "@types/passport-linkedin-oauth2": "^1.5.6",
-    "source-map-support": "^0.5.21",
-    "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "931e7763-1b10-43dc-ab45-bc7b0c03dffb"
   }
 }

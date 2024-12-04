@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "educations",
+  "info": {
+    "singularName": "education",
+    "pluralName": "educations",
+    "displayName": "Education"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "institution": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "department": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "degree": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "startDate": {
+      "type": "date",
+      "required": true,
+      "unique": false
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "education"
+    }
+  }
+}

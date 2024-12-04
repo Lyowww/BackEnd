@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "position": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "minLength": 1
+    },
+    "deadline": {
+      "type": "datetime",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "full-time",
+        "part-time",
+        "freelance ",
+        "remote",
+        "contract",
+        "internship"
+      ],
+      "default": "full-time",
+      "required": true
+    },
+    "education": {
+      "type": "enumeration",
+      "enum": [
+        "bachelor",
+        "master",
+        "doctorate",
+        "diploma",
+        "certificate",
+        "vocational"
+      ],
+      "default": "bachelor"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "internship",
+        "junior",
+        "middle",
+        "senior",
+        "architect"
+      ]
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "price": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "jobCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::job-category.job-category",
+      "inversedBy": "jobs"
+    },
+    "companyId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "jobs"
+    },
+    "test": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::test.test",
+      "mappedBy": "job"
+    }
+  }
+}

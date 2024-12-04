@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_categories",
+  "info": {
+    "singularName": "job-category",
+    "pluralName": "job-categories",
+    "displayName": "Job Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "popularity": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job",
+      "mappedBy": "jobCategory"
+    }
+  }
+}
