@@ -21,9 +21,10 @@ export class JobCategoryService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.jobCategoryModel.paginate(query, options);
+        return this.jobCategoryModel.paginate(options);
     }
 
     // This is going to be different based on our needs
@@ -33,9 +34,10 @@ export class JobCategoryService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.jobCategoryModel.paginate(query, options);
+        return this.jobCategoryModel.paginate(options);
     }
 
     async getOne(id: Types.ObjectId) {

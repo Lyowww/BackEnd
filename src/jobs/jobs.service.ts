@@ -17,9 +17,10 @@ export class JobsService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.jobModel.paginate(query, options);
+        return this.jobModel.paginate(options);
     }
 
     async getAllPublic() {
@@ -82,7 +83,7 @@ export class JobsService {
 
         console.log(query, options);
 
-        return this.jobModel.paginate(query, options);
+        return this.jobModel.paginate(options);
     }
 
     async getOne(id: Types.ObjectId) {

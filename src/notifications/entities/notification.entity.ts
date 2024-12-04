@@ -1,6 +1,6 @@
-import { Types, Schema as MongooseSchema } from "mongoose";
+import { Types } from "mongoose";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import * as mongoosePaginate from "mongoose-paginate-v2";
+import { mongoosePagination } from "mongoose-paginate-ts";
 
 @Schema({ collection: "notifications", timestamps: true })
 export class NotificationsModel {
@@ -22,4 +22,4 @@ export class NotificationsModel {
 
 export const NotificationsSchema = SchemaFactory.createForClass(NotificationsModel);
 
-(NotificationsSchema as MongooseSchema<any>).plugin(mongoosePaginate);
+NotificationsSchema.plugin(mongoosePagination);

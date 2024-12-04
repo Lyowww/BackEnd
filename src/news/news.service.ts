@@ -17,9 +17,10 @@ export class NewsService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.newsModel.paginate(query, options);
+        return this.newsModel.paginate(options);
     }
 
     // This is going to be different based on our needs
@@ -29,9 +30,10 @@ export class NewsService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.newsModel.paginate(query, options);
+        return this.newsModel.paginate(options);
     }
 
     findOne(id: Types.ObjectId) {

@@ -17,9 +17,10 @@ export class ReportsService {
         const options = {
             page,
             limit,
+            query,
         };
 
-        return this.reportsModel.paginate(query, options);
+        return this.reportsModel.paginate(options);
     }
 
     async getOne(id: Types.ObjectId) {

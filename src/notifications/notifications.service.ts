@@ -17,9 +17,10 @@ export class NotificationsService {
         const options = {
             page,
             limit,
+            query,
         };
 
-        return this.notificationsModel.paginate(query, options);
+        return this.notificationsModel.paginate(options);
     }
 
     async getOne(id: Types.ObjectId) {

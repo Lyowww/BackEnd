@@ -17,9 +17,10 @@ export class ContactUsService {
         const options = {
             page,
             limit,
+            query
         };
 
-        return this.contactUsModel.paginate(query, options);
+        return this.contactUsModel.paginate(options);
     }
 
     // This is going to be different based on our needs
@@ -27,11 +28,12 @@ export class ContactUsService {
         const query = {};
 
         const options = {
+            query,
             page,
             limit,
         };
 
-        return this.contactUsModel.paginate(query, options);
+        return this.contactUsModel.paginate(options);
     }
 
     findOne(id: Types.ObjectId) {
