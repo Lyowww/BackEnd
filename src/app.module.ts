@@ -14,8 +14,11 @@ import { NewsModule } from "./news/news.module";
 import { ReportsModule } from "./reports/reports.module";
 import { ContactUsModule } from "./contact-us/contact-us.module";
 import { NotificationsModule } from "./notifications/notifications.module";
+import { FeedbacksModule } from "./feedbacks/feedbacks.module";
 
 const NODE_ENV = process.env.NODE_ENV;
+require('dotenv').config()
+const dotenv=require('dotenv');
 
 @Module({
     imports: [
@@ -46,6 +49,7 @@ const NODE_ENV = process.env.NODE_ENV;
         ReportsModule,
         ContactUsModule,
         NotificationsModule,
+        FeedbacksModule,
     ],
 })
 export class AppModule {}

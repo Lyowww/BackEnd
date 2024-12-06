@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 (async () => {
   const app = await NestFactory.create(AppModule);
@@ -9,6 +10,15 @@ import { AppModule } from './app.module';
 
   const PORT = config.get<string>('PORT');
   const CLIENT_URL = config.get<string>('CLIENT_URL');
+
+  const configSwagger = new DocumentBuilder()
+    .setTitle('BeBridge')
+    .setDescription('Description')
+    .setVersion('1.0')
+    .addTag('.')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, configSwagger);
+  SwaggerModule.setup('api', app, documentFactory);
 
   app.enableCors({
     credentials: true,
