@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TestService } from './test.service';
 import { TestController } from './test.controller';
-import { Test, TestSchema } from '../../test/entities/test.entity';
+import { Test, TestSchema } from './entities/test.entity';
 import { MulterModule } from '@nestjs/platform-express';
 
 @Module({

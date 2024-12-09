@@ -4,7 +4,7 @@ import { Transform, Type } from 'class-transformer';
 export class Answer {
   @IsNotEmpty()
   @IsString()
-  text: string;
+  answer: string;
 
   @IsOptional()
   @IsString()
@@ -15,7 +15,7 @@ export class Answer {
   @Min(1)
   order: number;
 
-  @Transform(({value}) => value === 'true')
+  @Transform(({ value }) => value === 'true')
   @IsBoolean()
   correct: boolean;
 }

@@ -5,7 +5,7 @@ import { mongoosePagination } from "mongoose-paginate-ts";
 import { JobCategory } from "src/job-category/entities/job-category.entity";
 
 @Schema({ collection: "jobs", timestamps: true })
-export class Jobs {
+export class Job {
     @Prop({ type: Types.ObjectId, ref: JobCategory.name, required: true })
     companyId: Types.ObjectId;
 
@@ -49,6 +49,6 @@ export class Jobs {
     image: string;
 }
 
-export const JobsSchema = SchemaFactory.createForClass(Jobs);
+export const JobsSchema = SchemaFactory.createForClass(Job);
 
 JobsSchema.plugin(mongoosePagination);

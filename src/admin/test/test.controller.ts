@@ -20,7 +20,7 @@ import { Role } from '../../user/entities/user.entity';
 import { CreateTestDto } from './dto/create-test.dto';
 import { UpdateTestDto } from './dto/update-test.dto';
 import { AuthGuard, RequestWithUser } from '../../auth/auth.guard';
-import { ParseObjectId } from "src/utils/pipes/parseObjectId.pipe";
+import { ParseObjectId } from '../../utils/pipes/parseObjectId.pipe';
 import { multer } from '../../utils/multer';
 
 @Controller('admin/test')
@@ -32,10 +32,10 @@ export class TestController {
   @Post()
   @UseInterceptors(FileFieldsInterceptor(
     [
-      { name: 'answers[0][image]', maxCount: 1 },
-      { name: 'answers[1][image]', maxCount: 1 },
-      { name: 'answers[2][image]', maxCount: 1 },
-      { name: 'answers[3][image]', maxCount: 1 }
+      { name: 'questions[0][answers][0][image]', maxCount: 1 },
+      { name: 'questions[0][answers][1][image]', maxCount: 1 },
+      { name: 'questions[0][answers][2][image]', maxCount: 1 },
+      { name: 'questions[0][answers][3][image]', maxCount: 1 }
     ],
     multer
   ))

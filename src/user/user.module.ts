@@ -8,7 +8,7 @@ import { Profile, ProfileSchema } from './entities/profile.entity';
 import { Education, EducationSchema } from './entities/education.entity';
 import { Experience, ExperienceSchema } from './entities/experience.entity';
 import { Skill, SkillSchema } from './entities/skill.entity';
-import { Jobs, JobsSchema } from '../jobs/entities/jobs.entity';
+import { Job, JobsSchema } from '../job/entities/job.entity';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { Jobs, JobsSchema } from '../jobs/entities/jobs.entity';
       name: Skill.name,
       schema: SkillSchema
     }, {
-      name: Jobs.name,
+      name: Job.name,
       schema: JobsSchema
     } ])
   ],

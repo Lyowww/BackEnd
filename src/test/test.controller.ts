@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { Types } from 'mongoose';
 import { TestService } from './test.service';
 import { ParseObjectId } from "../utils/pipes/parseObjectId.pipe";
@@ -10,11 +10,6 @@ export class TestController {
   @Get(':id')
   findOne(@Param('id', ParseObjectId) id: Types.ObjectId) {
     return this.testService.findOne(id);
-  }
-
-  @Get('search')
-  search(@Query('tags') query: string[]) {
-    return this.testService.search(query);
   }
 
   @Post('check')

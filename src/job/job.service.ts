@@ -1,14 +1,14 @@
 import { InjectModel } from "@nestjs/mongoose";
 import { PaginateModel, Types } from "mongoose";
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
-import { Jobs } from "./entities/jobs.entity";
-import { JobSDto } from "./dto/jobs.dto";
+import { Job } from "./entities/job.entity";
+import { JobDto } from "./dto/job.dto";
 
 @Injectable()
-export class JobsService {
+export class JobService {
     constructor(
-        @InjectModel(Jobs.name)
-        private readonly jobModel: PaginateModel<Jobs>
+        @InjectModel(Job.name)
+        private readonly jobModel: PaginateModel<Job>
     ) {}
 
     async getAll(page: number = 1, limit: number = 10) {
@@ -93,12 +93,12 @@ export class JobsService {
         return job;
     }
 
-    async create(body: JobSDto) {
+    async create(body: JobDto) {
         body.category = new Types.ObjectId(body.category);
         return this.jobModel.create(body);
     }
 
-    async update(id: Types.ObjectId, job: JobSDto) {
+    async update(id: Types.ObjectId, job: JobDto) {
         if (!Types.ObjectId.isValid(id)) throw new BadRequestException(`Incorrect query`);
 
         const updateJob = await this.jobModel.findByIdAndUpdate(id, { ...job }, { new: true });
