@@ -1,7 +1,7 @@
-import { IsArray, IsBoolean, IsDateString, IsNotEmpty, IsString, Length } from "class-validator";
+import { IsArray, IsDateString, IsNotEmpty, IsString, Length } from "class-validator";
 import { Types } from "mongoose";
 
-export class JobSDto {
+export class JobDto {
     @IsNotEmpty()
     companyId: Types.ObjectId;
 

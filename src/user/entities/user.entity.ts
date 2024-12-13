@@ -4,7 +4,7 @@ import { Profile } from './profile.entity';
 import { Education } from './education.entity';
 import { Experience } from './experience.entity';
 import { Skill } from './skill.entity';
-import { Jobs } from '../../jobs/entities/jobs.entity';
+import { Job } from '../../job/entities/job.entity';
 
 export enum Role {
   EMPLOYEE = 'employee',
@@ -44,7 +44,7 @@ export class User {
   @Prop({ type: [ { type: Types.ObjectId, ref: Skill.name } ] })
   skill: Types.ObjectId[];
 
-  @Prop({ type: [ { type: Types.ObjectId, ref: Jobs.name } ] })
+  @Prop({ type: [ { type: Types.ObjectId, ref: Job.name } ] })
   bookmark: Types.ObjectId[];
 }
 

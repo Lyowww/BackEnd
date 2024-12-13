@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import { Types } from "mongoose";
-import { JobSDto } from "./dto/jobs.dto";
-import { JobsService } from "./jobs.service";
+import { JobDto } from "./dto/job.dto";
+import { JobService } from "./job.service";
 import { AuthGuard } from "src/auth/auth.guard";
 import { RoleGuard } from "src/auth/role.guard";
 import { Role } from "src/user/entities/user.entity";
@@ -12,8 +12,8 @@ import { ParseObjectId } from "src/utils/pipes/parseObjectId.pipe";
 @UseGuards(AuthGuard, RoleGuard)
 @Roles(Role.EMPLOYEE, Role.EMPLOYER, Role.MODERATOR)
 @Controller("jobs")
-export class JobsController {
-    constructor(private readonly jobsService: JobsService) {}
+export class JobController {
+    constructor(private readonly jobsService: JobService) {}
 
     @Get()
     getAll(@Query("page", ParseIntPipe) page: number, @Query("limit", ParseIntPipe) limit: number) {
@@ -56,13 +56,13 @@ export class JobsController {
 
     @Roles(Role.EMPLOYER, Role.MODERATOR)
     @Post()
-    create(@Body() body: JobSDto) {
+    create(@Body() body: JobDto) {
         return this.jobsService.create(body);
     }
 
     @Roles(Role.EMPLOYER, Role.MODERATOR)
     @Patch(":id")
-    update(@Param("id", ParseObjectId) id: Types.ObjectId, @Body() body: JobSDto) {
+    update(@Param("id", ParseObjectId) id: Types.ObjectId, @Body() body: JobDto) {
         return this.jobsService.update(id, body);
     }
 

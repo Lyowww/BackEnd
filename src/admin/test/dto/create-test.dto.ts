@@ -1,37 +1,14 @@
-import {
-  ArrayMinSize,
-  IsArray,
-  IsEnum,
-  IsInt, IsMongoId,
-  IsNotEmpty,
-  IsString,
-  Length,
-  Max,
-  Min,
-  ValidateNested
-} from 'class-validator';
-import { Type } from 'class-transformer';
+import { ArrayMinSize, IsArray, IsBoolean, IsInt, IsMongoId, Max, Min, ValidateNested } from 'class-validator';
 import { Types } from 'mongoose';
-import { Answer } from './answer.dto';
-import { AnswerType } from '../../../test/entities/test.entity';
+import { Transform, Type } from 'class-transformer';
+import { Question } from './question.dto';
 
 export class CreateTestDto {
-  @IsMongoId()
-  job: Types.ObjectId;
-
-  @IsNotEmpty()
-  @IsString()
-  @Length(2, 1000)
-  question: string;
-
-  @Type(() => Answer)
+  @Type(() => Question)
   @IsArray()
   @ValidateNested({ each: true })
-  @ArrayMinSize(2)
-  answers: Answer[]
-
-  @IsEnum(AnswerType, { each: true })
-  answersType: AnswerType;
+  @ArrayMinSize(1)
+  questions: Question[];
 
   @Type(() => Number)
   @IsInt()
@@ -39,8 +16,16 @@ export class CreateTestDto {
   @Max(2 * 60 * 60)
   duration: number;
 
-  @IsArray()
-  @IsString({ each: true })
-  @ArrayMinSize(1)
-  tags: string[];
+  @Transform(({ value }) => value === 'true')
+  @IsBoolean()
+  published: boolean;
+
+  @IsMongoId()
+  job: Types.ObjectId;
+
+  @IsMongoId()
+  createdBy: Types.ObjectId;
+
+  @IsMongoId()
+  updatedBy: Types.ObjectId;
 }

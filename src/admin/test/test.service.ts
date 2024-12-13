@@ -4,7 +4,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtPayload } from '../../auth/auth.guard';
 import { CreateTestDto } from './dto/create-test.dto';
 import { UpdateTestDto } from './dto/update-test.dto';
-import { Test } from '../../test/entities/test.entity';
+import { Test } from './entities/test.entity';
 
 @Injectable()
 export class TestService {
@@ -16,8 +16,10 @@ export class TestService {
   async create(payload: JwtPayload, createTestDto: CreateTestDto, images: { [key: string]: Express.Multer.File[] }) {
     const data = Object.values(images).flat();
 
-    for (let i = 0; i < createTestDto.answers?.length; i++) {
-      createTestDto.answers[i].image = data.find(image => image.fieldname === `answers[${ i }][image]`)?.path;
+    for (let i = 0; i < createTestDto.questions?.length; i++) {
+      for (let j = 0; j < createTestDto.questions[i]?.answers?.length; j++) {
+        createTestDto.questions[i].answers[j].image = data.find(image => image.fieldname === `questions[${ i }][answers][${ j }][image]`)?.path;
+      }
     }
 
     return this.testModel.create({
@@ -44,8 +46,10 @@ export class TestService {
   }) {
     const data = Object.values(images).flat();
 
-    for (let i = 0; i < updateTestDto.answers?.length; i++) {
-      updateTestDto.answers[i].image = data.find(image => image.fieldname === `answers[${ i }][image]`)?.path;
+    for (let i = 0; i < updateTestDto.questions?.length; i++) {
+      for (let j = 0; j < updateTestDto.questions[i]?.answers?.length; j++) {
+        updateTestDto.questions[i].answers[j].image = data.find(image => image.fieldname === `questions[${ i }][answers][${ j }][image]`)?.path;
+      }
     }
 
     const test = await this.testModel.findOneAndUpdate({ _id: id }, {

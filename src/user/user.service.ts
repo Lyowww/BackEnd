@@ -13,7 +13,7 @@ import { EducationDto } from './dto/education.dto';
 import { Experience } from './entities/experience.entity';
 import { ExperienceDto } from './dto/experience.dto';
 import { SettingsDto } from './dto/settings.dto';
-import { Jobs } from '../jobs/entities/jobs.entity';
+import { Job } from '../job/entities/job.entity';
 
 @Injectable()
 export class UserService {
@@ -28,8 +28,8 @@ export class UserService {
     private readonly experienceModel: Model<Experience>,
     @InjectModel(Skill.name)
     private readonly skillModel: Model<Skill>,
-    @InjectModel(Jobs.name)
-    private readonly jobModel: Model<Jobs>
+    @InjectModel(Job.name)
+    private readonly jobModel: Model<Job>
   ) {}
 
   async me(payload: JwtPayload, query: { populate: string[] }) {

@@ -42,7 +42,10 @@ export class AuthService {
   async signin(signin: SigninDto) {
     const user = await this.userModel.findOne({
       confirmed: true,
-      username: signin.username
+      $or: [
+        { email: signin.email },
+        { username: signin.username }
+      ]
     });
     if (!user) throw new UnauthorizedException('Invalid email or password');
 

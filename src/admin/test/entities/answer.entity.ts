@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema({ versionKey: false })
 export class Answer {
   @Prop({ type: String, required: true })
-  text: string;
+  answer: string;
 
   @Prop({ type: Boolean, required: true, default: false })
   correct: boolean;
