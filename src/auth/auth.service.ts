@@ -32,7 +32,7 @@ export class AuthService {
 
     const salt = await bcrypt.genSalt(10);
     signup.password = await bcrypt.hash(signup.password, salt);
-    signup.code = crypto.randomBytes(10).toString('hex');
+    signup.code = Math.floor(1000 + Math.random() * 9000).toString();
 
     const user = await this.userModel.create(signup);
 
