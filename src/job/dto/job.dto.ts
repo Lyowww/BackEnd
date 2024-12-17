@@ -1,4 +1,4 @@
-import { IsArray, IsDateString, IsNotEmpty, IsString, Length } from "class-validator";
+import { IsArray, IsDateString, IsInt, IsNotEmpty, IsString, Length } from "class-validator";
 import { Types } from "mongoose";
 
 export class JobDto {
@@ -54,4 +54,8 @@ export class JobDto {
     @IsNotEmpty()
     @IsString()
     image: string;
+
+    @IsNotEmpty()
+    @IsInt()
+    views: number;
 }

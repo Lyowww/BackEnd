@@ -47,6 +47,9 @@ export class Job {
 
     @Prop({ required: true })
     image: string;
+
+    @Prop({ required: true })
+    views: number;
 }
 
 export const JobsSchema = SchemaFactory.createForClass(Job);
