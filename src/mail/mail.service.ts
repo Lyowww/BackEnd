@@ -13,6 +13,7 @@ export class MailService {
       template: 'confirmation',
       context: {
         email: user.email,
+        code: user.code,
         url: `http://localhost:3030/auth/confirm/${ user.code }`
       }
     });

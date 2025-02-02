@@ -1,13 +1,14 @@
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import * as crypto from 'crypto';
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
+import { JwtPayload } from './auth.guard';
 import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
 import { User } from '../user/entities/user.entity';
 import { MailService } from '../mail/mail.service';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -32,7 +33,7 @@ export class AuthService {
 
     const salt = await bcrypt.genSalt(10);
     signup.password = await bcrypt.hash(signup.password, salt);
-    signup.code = crypto.randomBytes(10).toString('hex');
+    signup.code = Math.floor(1000 + Math.random() * 9000).toString();
 
     const user = await this.userModel.create(signup);
 
@@ -69,6 +70,26 @@ export class AuthService {
 
     user.code = undefined;
     user.confirmed = true;
+
+    await user.save();
+  }
+
+  async forgotPassword(payload: JwtPayload, forgotPassword: ForgotPasswordDto) {
+    if (!(forgotPassword.password === forgotPassword.passwordConfirm)) {
+      throw new BadRequestException('Passwords do not match');
+    }
+
+    const user = await this.userModel.findOne({
+      _id: payload.id,
+      confirmed: true
+    });
+    if (!user) throw new UnauthorizedException();
+
+    const isCorrectPassword = await bcrypt.compare(forgotPassword.oldPassword, user.password);
+    if (!isCorrectPassword) throw new BadRequestException('Incorrect credentials');
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(forgotPassword.password, salt);
 
     await user.save();
   }

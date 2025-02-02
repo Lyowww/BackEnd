@@ -4,6 +4,8 @@ import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
 import { SigninDto } from './dto/signin.dto';
+import { RequestWithUser } from './auth.guard';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -44,5 +46,10 @@ export class AuthController {
   @Patch('confirm')
   confirm(@Body('code') code: string) {
     return this.authService.confirm(code);
+  }
+
+  @Patch('forgot-password')
+  forgotPassword(@Req() req: RequestWithUser, @Body() forgot: ForgotPasswordDto) {
+    return this.authService.forgotPassword(req.user, forgot);
   }
 }
