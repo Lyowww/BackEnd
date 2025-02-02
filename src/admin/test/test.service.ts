@@ -18,7 +18,9 @@ export class TestService {
 
     for (let i = 0; i < createTestDto.questions?.length; i++) {
       for (let j = 0; j < createTestDto.questions[i]?.answers?.length; j++) {
-        createTestDto.questions[i].answers[j].image = data.find(image => image.fieldname === `questions[${ i }][answers][${ j }][image]`)?.path;
+        createTestDto.questions[i].answers[j].image = data.find(image => {
+          return image.fieldname === `questions[${ i }][answers][${ j }][image]`;
+        })?.path;
       }
     }
 
@@ -41,14 +43,14 @@ export class TestService {
     return this.testModel.find().populate('job');
   }
 
-  async update(payload: JwtPayload, id: Types.ObjectId, updateTestDto: UpdateTestDto, images: {
-    [key: string]: Express.Multer.File[]
-  }) {
+  async update(payload: JwtPayload, id: Types.ObjectId, updateTestDto: UpdateTestDto, images: { [key: string]: Express.Multer.File[] }) {
     const data = Object.values(images).flat();
 
     for (let i = 0; i < updateTestDto.questions?.length; i++) {
       for (let j = 0; j < updateTestDto.questions[i]?.answers?.length; j++) {
-        updateTestDto.questions[i].answers[j].image = data.find(image => image.fieldname === `questions[${ i }][answers][${ j }][image]`)?.path;
+        updateTestDto.questions[i].answers[j].image = data.find(image => {
+          return image.fieldname === `questions[${ i }][answers][${ j }][image]`;
+        })?.path;
       }
     }
 
